@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjw3p-zprBbF9LxrXAPUXHCsZQKj0fqFo">
+    </script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=geometry,visualization&sensor=true_or_false">
+    </script>
+    <script type="text/javascript" src="maps.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">    
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+
+    <script type="text/javascript">
+        $(function() {
+            var select = $( "#north" );
+            var slider = $( "<div id='sliderN'></div>" ).insertAfter( select ).slider({
+              min: 1,
+              max: 7,
+              range: "min",
+              value: select[ 0 ].selectedIndex + 1, 
+           
+              slide: function(event, ui){
+                select[ 0 ].selectedIndex = ui.value - 1;
+                fileListNorth = ["jan_8_n", "jan_11_n", "jan_13_n", "jan_14_n", "jan_16_n", "jan_19_n", "jan_20_n"];
+                  script = document.createElement('script');
+                  script.src = "data/"+fileListNorth[ui.value -1] +".js";   
+                  document.getElementsByTagName('head')[0].appendChild(script);
+              }    
+            });
+
+            $( "#north" ).change(function() {
+              toChange = 'n';
+              slider.slider( "value", this.selectedIndex + 1 );
+              fileListNorth = ["jan_8_n", "jan_11_n", "jan_13_n", "jan_14_n", "jan_16_n", "jan_19_n", "jan_20_n"];
+              script = document.createElement('script');
+              script.src = "data/"+fileListNorth[this.selectedIndex ] +".js";
+              document.getElementsByTagName('head')[0].appendChild(script);
+            });
+          });
+
+        $(function() {
+            var select = $( "#south" );
+            var slider = $( "<div id='sliderS'></div>" ).insertAfter( select ).slider({
+              min: 1,
+              max: 7,
+              range: "min",
+              value: select[ 0 ].selectedIndex + 1, 
+           
+              slide: function(event, ui){
+                select[ 0 ].selectedIndex = ui.value - 1;
+                fileListSouth = ["jan_4_s", "jan_8_s","jan_11_s", "jan_13_s", "jan_16_s",
+                "jan_19_s", "jan_20_s"]; 
+                script = document.createElement('script');
+                script.src = "data/"+fileListSouth[ui.value -1] +".js";   
+                document.getElementsByTagName('head')[0].appendChild(script);
+              }
+            });
+
+            $( "#south" ).change(function() {
+              toChange= 's'
+              slider.slider( "value", this.selectedIndex + 1 );
+              fileListSouth = ["jan_4_s", "jan_8_s","jan_11_s", "jan_13_s", "jan_16_s", "jan_19_s", "jan_20_s"];
+              script = document.createElement('script');
+              script.src = "data/"+fileListSouth[this.selectedIndex ] +".js";
+              document.getElementsByTagName('head')[0].appendChild(script);
+            });
+          });
+    </script>
+
+
+
+
+    <title>Woodsmoke Concentrations</title>
+  </head>
+  <body>
+    <div id="titleStuff"> <h1>Woodsmoke PM2.5 Concentrations in Grand Rapids, WI</h1></div>
+    <div class="row">
+      <div class="col-md-5">
+        <form id="northform">
+          <label for="north">North Run</label>
+          <select name="north" id="north">
+            <option>January 8</option>
+            <option>January 11</option>
+            <option>January 13</option>
+            <option>January 14</option>
+            <option>January 16</option>
+            <option>January 19</option>
+            <option>January 20</option>
+          </select>
+        </form>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-5">
+        <form id="southform" style="float: right">
+          <label for="south">South Run</label>
+          <select name="south" id="south">
+            <option>January 4</option>
+            <option>January 8</option>
+            <option>January 11</option>
+            <option>January 13</option>    
+            <option>January 16</option>
+            <option>January 19</option>
+            <option>January 20</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5"> 
+        <div id="northMap"></div>
+      </div>
+      <div class="col-md-2">
+        <div class = "scale">
+        <img src="colorscale.png" alt="Mountain View" style="width:150px;height:500px">
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="southMap" ></div>
+      </div>
+    </div>
+    <div class=bottom>
+        <h4>Josie Bealle, Andrew Yang, Dave Musicant, Dave Snyder</h4>
+    </div>
+    <div class=easter>
+        <a href="https://www.youtube.com/watch?v=9tNrFEpg5fw"><font color="FFFFFF">Because every good research project needs at least one easter egg.</a>
+    </div>
+  </body>
+</html>
