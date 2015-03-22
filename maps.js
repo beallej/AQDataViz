@@ -1,7 +1,6 @@
 var northMap, southMap;
 var northMapRects = [];
 var southMapRects = [];
-var storedMaps = new Object();
 
 
 function initialize() {
@@ -66,15 +65,6 @@ function eqfeed_callback(results) {
           heatmapRects[i].setMap(null);
         };
         
-      //add new markers
-      try {
-        squares = storedMaps[key];
-        for (var i = 0; i < squares.length; i++) { 
-          squares[i].setMap(map);
-        }
-      }
-
-      catch(err) {
         for (var i = 0; i < results.features.length; i++) {
           var coords = results.features[i].geometry.coordinates;
           var bottom_right = new google.maps.LatLng(coords[0][0], coords[0][1]);
@@ -97,9 +87,8 @@ function eqfeed_callback(results) {
           heatmapRects[i].setMap(map);  
 
         }
-        storedMaps[key] = heatmapRects;
       }
-    }
+
     else {
       nmap = results.features[0].features;
       smap = results.features[1].features;
