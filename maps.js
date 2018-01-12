@@ -23,7 +23,7 @@ function initialize() {
   southMap = new google.maps.Map(document.getElementById('southMap'),
       mapOptionsSouth);
   script = document.createElement('script');
-  script.src = "data/first.js";
+  script.src = "data/first.js?key=IzaSyBu5wleSmGuMo7lGvRNgUPzpdX3tZ3XKjA";
   document.getElementsByTagName('head')[0].appendChild(script);
 }
 
