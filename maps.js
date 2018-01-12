@@ -24,7 +24,6 @@ function initialize() {
       mapOptionsSouth);
   script = document.createElement('script');
   script.src = "data/first.js";
-  script.setAttribute('key', 'IzaSyBu5wleSmGuMo7lGvRNgUPzpdX3tZ3XKjA');
   document.getElementsByTagName('head')[0].appendChild(script);
 }
 
